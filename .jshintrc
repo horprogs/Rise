@@ -14,7 +14,7 @@
   // true: Require {} for every new block or scope
   "eqeqeq": true,
   // true: Require triple equals (===) for comparison
-  "forin": true,
+  "forin": false,
   // true: Require filtering for..in loops with obj.hasOwnProperty()
   "freeze": true,
   // true: prohibits overwriting prototypes of native objects such as Array, Date etc.
@@ -34,7 +34,7 @@
   // true: Prohibit use of constructors for side-effects (without assignment)
   "plusplus": false,
   // true: Prohibit use of `++` and `--`
-  "quotmark": "single",
+  "quotmark": false,
   // Quotation mark consistency:
   //   false    : do nothing (default)
   //   true     : ensure whatever is used is consistent
@@ -73,7 +73,7 @@
   // true: Tolerate use of `== null`
   "esversion": 6,
   // {int} Specify the ECMAScript version to which the code must adhere.
-  "moz": false,
+  "moz": true,
   // true: Allow Mozilla specific syntax (extends and overrides esnext features)
   // (ex: `for each`, multiple try/catch, function expression…)
   "evil": false,

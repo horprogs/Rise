@@ -1,6 +1,7 @@
 @import "../app/common";
 
 .skills {
+  max-width: 520px;
   &-new {
     margin-top: 10px;
     &__input {
@@ -11,6 +12,13 @@
       border-radius: 5px;
       border: 1px solid #C8C8C8;
     }
+  }
+  &-info {
+    background-color: #eaeaea;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 5px;
   }
   &-tooltip {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);

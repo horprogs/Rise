@@ -59,13 +59,13 @@ gulp.task('base64', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(ASSETS_PATH + '/**', browserSync.stream());
+    gulp.watch(ASSETS_PATH + '/**/*.js', browserSync.reload);
     gulp.watch([ASSETS_PATH + '/**/*.scss'], ['sass']);
     gulp.watch(['/**/*.html', ASSETS_PATH + '/**/*.js'], browserSync.reload);
 });
 
 gulp.task('browserSync', function () {
-    return browserSync.init({
+    return browserSync.init(ASSETS_PATH+'/**',{
         server: {
             baseDir: './'
         },

@@ -1,135 +1,14 @@
 ;(function () {
     'use strict';
 
-    let levels, data;
-
-    class Model {
-        constructor() {
-            data = [
-                {
-                    title: 'HTML',
-                    level: 'Advanced'
-                },
-                {
-                    title: 'CSS',
-                    level: 'Advanced'
-                },
-                {
-                    title: 'JavaScript',
-                    level: 'Intermediate'
-                }
-            ];
-            levels = ['Novice', 'Intermediate', 'Advanced', 'Expert'];
-        }
-    }
-
-    class TooltipLevel {
-        constructor(opt) {
-            this.levels = levels;
-            this._handlerMe = opt.me;
-            this._handlerParent = opt.parent;
-            this._render();
-
-        }
-
-        _clear() {
-            if (document.querySelector('.skills-tooltip')) {
-                for (let i = 0; i < document.querySelectorAll('.skills-tooltip').length; ++i) {
-                    document.querySelectorAll('.skills-tooltip')[i].remove();
-                }
-            }
-        }
-
-        _render() {
-            this._clear();
-
-            let tooltip = document.createElement('div');
-            tooltip.classList.add('skills-tooltip');
-
-            this.levels.forEach(item => {
-                tooltip.innerHTML += `
-                    <a href="#" class="skills-tooltip__item js-change-level" data-level="${item}">${item}</a>
-                `;
-            });
-
-            this._handlerMe.classList.toggle('skills__change--active');
-            this._handlerMe.appendChild(tooltip);
-            tooltip.addEventListener('click', this._onChangeLevel.bind(this));
-        }
-
-        _onChangeLevel(event) {
-            event.preventDefault();
-
-            let me = event.target,
-                newLevel;
-
-            if (!me.classList.contains('js-change-level')) {
-                return;
-            }
-
-            newLevel = me.getAttribute('data-level');
-            this._handlerParent.querySelector('.js-level').innerHTML = newLevel;
-            this._handlerMe.classList.toggle('skills__change--active');
-            this._clear();
-        }
-    }
-
-    class SkillItem {
-        constructor(opt) {
-            this.title = opt.title;
-            this.level = opt.level;
-            this._render();
-
-        }
-
-        _render() {
-            let main = document.querySelector('.js-main'),
-                item = document.createElement('div');
-
-            item.classList.add('skills__item', 'js-skills-item');
-
-            item.innerHTML = `
-                <span class="skills__title">${this.title}</span>
-                <span class="skills__level js-level">${this.level}</span>
-                <a href="#" class="skills__change js-change">Edit</a>
-                <a href="#" class="skills__delete js-delete">Delete</a>`;
-
-            main.appendChild(item);
-            item.addEventListener('click', this._onClickSkill.bind(this));
-        }
-
-        _deleteItem(item) {
-            item.remove();
-        }
-
-        _onClickSkill(event) {
-            event.preventDefault();
-
-            let me = event.target,
-                parent = event.currentTarget;
-
-            if (me.classList.contains('js-change')) {
-                new TooltipLevel({
-                    me,
-                    parent
-                });
-                return;
-            }
-
-            if (me.classList.contains('js-delete')) {
-                this._deleteItem(parent);
-            }
-        }
-
-
-    }
+    let SkillItem = window.SkillItem,
+        Model = window.Model;
 
     class Skills {
         constructor() {
-            this.data = data;
+            this.data = Model.data;
             this._renderForm();
-            this._getItems();
-
+            this.getItems();
         }
 
         _renderForm() {
@@ -141,27 +20,76 @@
             form.innerHTML = `
                 <form class="js-skills-new">
                     <input type="text" class="skills-new__input js-skills-new-input" placeholder="New skill..">
-                    <input type="submit" class="btn btn--blue" value="Save">
+                    <input type="submit" class="btn btn--blue" value="Add">
                 </form>
                 `;
 
             main.appendChild(form);
+            document.querySelector('.js-skills-new').addEventListener('submit', (event) => {
+                event.preventDefault();
+                let title = document.querySelector('.js-skills-new-input').value;
+                this.addItem(title);
+            });
         }
 
-        _getItems() {
-            for (let val of this.data) {
-                let title = val.title,
-                    level = val.level;
+        updateView() {
+            document.querySelector('.js-skills').remove();
+            this.getItems();
+        }
 
-                new SkillItem({
+        deleteItem(item) {
+            for (let key in Model.data) {
+                if (+item.getAttribute('data-id') === +key) {
+                    delete Model.data[key];
+                    break;
+                }
+            }
+            this.updateView();
+        }
+
+        addItem(title) {
+            let newItem = {
+                title: title,
+                level: Model.levels[0]
+            };
+            Model.data.push(newItem);
+
+            this.updateView();
+        }
+
+        getItems() {
+            for (let key in this.data) {
+                let val = this.data[key];
+                let title = val.title,
+                    level = val.level,
+                    info = val.info,
+                    id = key;
+
+                let div = document.createElement('div'),
+                    main = document.querySelector('.js-main');
+
+                div.classList.add('skills', 'js-skills');
+                main.appendChild(div);
+
+                let item = new SkillItem({
                     title,
-                    level
-                })
+                    level,
+                    id,
+                    info
+                });
+
+                item.itemSkill.addEventListener('click', (event) => {
+                    let me = event.target,
+                        parent = event.currentTarget;
+
+                    if (me.classList.contains('js-delete')) {
+                        this.deleteItem(parent);
+                    }
+                });
 
             }
         }
     }
 
-    window.Model = Model;
     window.Skills = Skills;
 }());

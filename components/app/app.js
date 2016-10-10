@@ -4,10 +4,10 @@
     // import
     let Ajax = window.Ajax,
         Skills = window.Skills,
-        Model = window.Model;
+        SkillItem = window.SkillItem;
 
-    new Model();
-    new Skills();
+    window.skills = new Skills();
+    //window.SkillItem = new SkillItem();
 
     //
     //new Menu({
