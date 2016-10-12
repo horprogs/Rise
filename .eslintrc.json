@@ -1,7 +1,9 @@
 {
+  "extends": "airbnb",
   "plugins": [
-    "standard",
-    "promise"
+    "react",
+    "jsx-a11y",
+    "import"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -13,6 +15,7 @@
   },
   "env": {
     "browser": true,
+    // TODO must be false
     "node": true
   },
   "globals": {
@@ -25,6 +28,14 @@
       {
         "SwitchCase": 1
       }
+    ],
+    "react/jsx-indent": [
+      "error",
+      4
+    ],
+    "react/jsx-indent-props": [
+      "error",
+      4
     ],
     "linebreak-style": [
       "off"
@@ -47,6 +58,14 @@
       "off"
     ],
     "no-nested-ternary": [
+      "off"
+    ],
+    "react/jsx-closing-bracket-location": [
+      "warn",
+      "after-props"
+    ],
+    // TODO must be warn at least
+    "react/prop-types": [
       "off"
     ]
   }

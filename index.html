@@ -16,15 +16,17 @@
 		<a href="#" class="header-nav__item">Skills</a>
 	</nav>
 </header>
-<div class="main js-main"></div>
+<div id="root"></div>
+
+<!-- LIBS -->
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
 <!-- DEPENDENCIES -->
 <script src="components/model/model.js"></script>
-<script src="components/skills/skill-item.js"></script>
-<script src="components/skills/skills.js"></script>
-<script src="components/app/ajax.js"></script>
 
 <!-- APP -->
-<script src="components/app/app.js"></script>
+<script type="text/babel" src="components/app/app.js"></script>
 </body>
 </html>

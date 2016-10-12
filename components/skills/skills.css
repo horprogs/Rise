@@ -29,8 +29,7 @@
   .skills-tooltip {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     background-color: #FFFFFF;
-    position: absolute;
-    display: none; }
+    position: absolute; }
     .skills-tooltip__item {
       color: #000000;
       font-size: 14px;

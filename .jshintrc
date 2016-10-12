@@ -154,7 +154,7 @@
   // Windows Scripting Host
   "yui": false,
   // Yahoo User Interface
-
+  "react": true,
   // Custom Globals
   "globals": {}
   // additional predefined global variables
