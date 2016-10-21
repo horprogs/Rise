@@ -1,7 +1,7 @@
 import React from 'react';
 import SkillItem from './skillItem';
 
-const SkillList = ({skills, onDeleteItem, onChangeLevel}) => (
+const SkillList = ({skills, onDeleteItem, onChangeLevel, showTooltip}) => (
     <div className="skills">
         {skills.map((item) =>
             <SkillItem
@@ -10,6 +10,8 @@ const SkillList = ({skills, onDeleteItem, onChangeLevel}) => (
                 name={item.name}
                 level={item.level}
                 progress={item.progress}
+                isShowTooltip={item.isShowTooltip}
+                showTooltip={showTooltip}
                 onDelete={onDeleteItem}
                 onChangeLevel={onChangeLevel}
             />

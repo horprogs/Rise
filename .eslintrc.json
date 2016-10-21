@@ -45,6 +45,9 @@
     "no-confusing-arrow": [
       "off"
     ],
+    "no-case-declarations": [
+      "off"
+    ],
     "no-use-before-define": [
       "error",
       {

@@ -1,34 +1,62 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import ReactDOM from 'react-dom';
 import Levels from '../../model/levels';
+import {closeTooltipLevel} from '../../actions/skills';
 
-let my;
 
-const onChangeLevel = (e) => {
-    if (my) {
-        render.unmountComponentAtNode();
+class Tooltip extends Component {
+    onClose() {
+        this.props.onClose();
     }
-    my = render(
-        <div>
-            {Levels.map((el, i) =>
-                <a href="#" key={i} className="skills-tooltip__item js-change-level" data-level={el}>{el}</a>
-            )}
-        </div>,
-        e.target.children[0]
-    )
-};
 
-const SkillItem = ({ name, level, progress, id, onDelete }) => (
-    <div className="skills__item js-skill-item" data-id={id}>
-        <span className="skills__title">{name}</span>
-        <span className="skills__level">{level}</span>
-        <a href="#" className="skills__change" onClick={onChangeLevel}>
-            <div className="skills-tooltip"></div>
-            Edit
-        </a>
-        <a href="#" className="skills__change">Info</a>
-        <a href="#" className="skills__delete" onClick={onDelete}>Delete</a>
-    </div>
-);
+    componentWillMount() {
+        document.addEventListener('click', this.props.onClose, false);
+    }
 
-export default SkillItem;
+    componentWillUnmount() {
+        document.removeEventListener('click', this.props.onClose, false);
+    }
+
+    render() {
+        return (
+            <div className="skills-tooltip">
+                {Levels.map((el, i) =>
+                    <a href="#" key={i} className="skills-tooltip__item js-change-level" data-level={el}>{el}</a>
+                )}
+            </div>
+        )
+    }
+}
+
+class SkillItem extends Component {
+    render() {
+        return (
+            <div className=
+                     "skills__item js-skill-item" data-id={this.props.id}>
+                <span className="skills__title">{this.props.name}</span>
+                <span className="skills__level">{this.props.level}</span>
+                <a href="#" className="skills__change" onClick={this.props.showTooltip}>
+                    {!this.props.isShowTooltip || <Tooltip onClose={this.props.closeTooltipLevel}/>}
+                    Edit
+                </a>
+                <a href="#" className="skills__change">Info</a>
+                <a href="#" className="skills__delete" onClick={this.props.onDelete}>Delete</a>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        closeTooltipLevel: () => dispatch(closeTooltipLevel())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SkillItem)

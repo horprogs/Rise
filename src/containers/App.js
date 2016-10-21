@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import SkillList from '../components/skills/skillList';
 import Header from '../components/header/header';
 import AddItem from '../components/skills/addItem';
-import {addSkill, deleteSkill} from '../actions/skills';
+import {addSkill, deleteSkill, showTooltipLevel, closeTooltipLevel} from '../actions/skills';
 
 class App extends Component {
+
     render() {
         return (
             <div>
@@ -15,7 +16,7 @@ class App extends Component {
                 <SkillList
                     skills={this.props.skills}
                     onDeleteItem={this.props.deleteSkill}
-                    //onChangeLevel={this.props.showTooltipLevel}
+                    showTooltip={this.props.showTooltipLevel}
                 />
             </div>
         )
@@ -31,7 +32,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addSkill: bindActionCreators(addSkill, dispatch),
-        deleteSkill: bindActionCreators(deleteSkill, dispatch)
+        deleteSkill: bindActionCreators(deleteSkill, dispatch),
+        showTooltipLevel: bindActionCreators(showTooltipLevel, dispatch),
+        closeTooltipLevel: () => dispatch(closeTooltipLevel)
     }
 }
 
