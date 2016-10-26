@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SkillList from '../components/skills/skillList';
-import Header from '../components/header/header';
-import AddItem from '../components/skills/addItem';
-import {addSkill, deleteSkill, showTooltipLevel, closeTooltipLevel} from '../actions/skills';
+import Header from '../components/header/Header';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import LeftNavContainter from './navigation/navigation.jsx';
 
-class App extends Component {
+import styles from './app.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 
-    render() {
-        return (
+
+const App = ({leftNavOpen, children}) => {
+    return (
+
+        <MuiThemeProvider>
             <div>
                 <Header />
-                <AddItem onSubmit={this.props.addSkill}/>
-                <SkillList
-                    skills={this.props.skills}
-                    onDeleteItem={this.props.deleteSkill}
-                    showTooltip={this.props.showTooltipLevel}
-                />
+                <main className={cx({
+                    container: true,
+                    'container--with-left-nav': leftNavOpen,
+                })}>
+                    {children}
+                </main>
+                <LeftNavContainter />
             </div>
-        )
-    }
+        </MuiThemeProvider>
+    )
 }
 
-function mapStateToProps(state) {
-    return {
-        skills: state.skills
-    }
-}
+const AppContainer = connect(state => ({leftNavOpen: state.navigation.leftNavOpen}))(App);
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addSkill: bindActionCreators(addSkill, dispatch),
-        deleteSkill: bindActionCreators(deleteSkill, dispatch),
-        showTooltipLevel: bindActionCreators(showTooltipLevel, dispatch),
-        closeTooltipLevel: () => dispatch(closeTooltipLevel)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default AppContainer;

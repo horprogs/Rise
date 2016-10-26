@@ -2,8 +2,29 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var env = process.env.NODE_ENV || 'development';
+var isProd = env === 'production';
+
+var plugins = [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+
+
+    new ExtractTextPlugin('style.css', {
+        allChunks: true
+    })
+];
+
+if (isProd) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(env),
+    }))
+}
+
+
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: isProd ? 'source-map' : 'eval',
     entry: [
         'webpack-hot-middleware/client',
         'babel-polyfill',
@@ -16,31 +37,15 @@ module.exports = {
         publicPath: '/static/',
         library: '[name]'
     },
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-
-        new ExtractTextPlugin('style.css', {
-            allChunks: true
-        })
-    ],
+    plugins,
     module: {
-        //preLoaders: [
-        //    {
-        //        test: /\.js$/,
-        //        loaders: ['eslint-loader'],
-        //        include: [
-        //            path.resolve(__dirname, "src"),
-        //        ],
-        //    }
-        //],
         loaders: [
             {
                 loaders: ['babel-loader'],
                 include: [
                     path.resolve(__dirname, "src"),
                 ],
-                test: /\.js$/,
+                test: /\.js$|\.jsx/,
                 plugins: ['transform-runtime'],
             },
             {

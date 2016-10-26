@@ -1,0 +1,18 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transition: padding 500ms;
+  width: 100%;
+  padding: 20px;
+
+  &--with-left-nav {
+    padding-left: 270px;
+  }
+}

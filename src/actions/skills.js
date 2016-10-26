@@ -22,6 +22,23 @@ export function showTooltipLevel(e) {
     }
 }
 
+export function showInfoLevel(e) {
+    let id = e.target.closest('.js-skill-item').dataset.id;
+    return {
+        type: 'SHOW_INFO_LEVEL',
+        id
+    }
+}
+
+export function changeLevel(level, e) {
+    let id = e.target.closest('.js-skill-item').dataset.id;
+    return {
+        type: 'CHANGE_LEVEL',
+        id,
+        level
+    }
+}
+
 export function closeTooltipLevel() {
     return {
         type: 'CLOSE_TOOLTIP_LEVEL',

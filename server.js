@@ -10,6 +10,12 @@ var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}))
 app.use(webpackHotMiddleware(compiler))
 
+app.use(function (req, res, next) {
+    if (res.status(404)) {
+        res.sendFile(__dirname + '/index.html')
+    }
+})
+
 app.get("/", function (req, res) {
     res.sendFile(__dirname + '/index.html')
 })
