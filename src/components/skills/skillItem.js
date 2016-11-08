@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ReactDOM from 'react-dom';
 import Levels from '../../model/levels';
 import {closeTooltipLevel, changeLevel, showInfoLevel} from '../../actions/skills';
 import Delete from 'material-ui/svg-icons/action/delete';

@@ -1,7 +1,4 @@
-import ModelSkills from '../model/skills';
-
-
-const skills = (state = ModelSkills, action) => {
+const skills = (state = [], action) => {
     switch (action.type) {
         case 'ADD_SKILL':
             let max = 0;

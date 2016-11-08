@@ -4,8 +4,6 @@
   "description": "System for your growing",
   "main": "index.js",
   "dependencies": {
-    "babel-polyfill": "^6.16.0",
-    "babel-runtime": "^6.11.6",
     "classnames": "^2.2.5",
     "material-ui": "^0.16.1",
     "react": "^15.3.2",
@@ -36,6 +34,8 @@
     "eslint-plugin-react": "^6.4.1",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "force-case-sensitivity-webpack-plugin": "^0.2.1",
+    "html-webpack-plugin": "^2.24.1",
     "node-sass": "^3.10.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "resolve-url-loader": "^1.6.0",

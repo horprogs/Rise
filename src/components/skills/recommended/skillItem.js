@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {showInfoLevel} from '../../../actions/skills';
+import {showInfoLevelRecommended, addRecommendedItemToMe} from '../../../actions/recommendedSkills';
 import Add from 'material-ui/svg-icons/content/add';
 import Info from 'material-ui/svg-icons/action/info';
 
@@ -18,6 +18,7 @@ class ShowInfo extends Component {
 
 class SkillItem extends Component {
     render() {
+        console.log('props',this.props)
         return (
             <div>
                 <div className=
@@ -26,7 +27,7 @@ class SkillItem extends Component {
                     <span className="skills__level">{this.props.level}</span>
 
                     <Info onClick={this.props.showInfo} style={{cursor: 'pointer'}}/>
-                    <Add onClick={this.props.onAdd} style={{cursor: 'pointer'}}/>
+                    <Add onClick={this.props.add} style={{cursor: 'pointer'}}/>
                 </div>
                 <ShowInfo
                     isShowInfo={this.props.isShowInfo}
@@ -39,7 +40,8 @@ class SkillItem extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showInfo: (el) => dispatch(showInfoLevel(el))
+        showInfo: (el) => dispatch(showInfoLevelRecommended(el)),
+        add: (el) => dispatch(addRecommendedItemToMe(el)),
     }
 }
 

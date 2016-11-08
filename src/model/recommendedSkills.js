@@ -3,25 +3,29 @@ const ModelRecommendedSkills = [
         id: 1,
         name: 'HTML',
         level: 'Advanced',
-        info: 'Info HTML'
+        info: 'Info HTML',
+        isShowInfo: false
     },
     {
         id: 2,
         name: 'CSS',
         level: 'Advanced',
-        info: 'Info CSS'
+        info: 'Info CSS',
+        isShowInfo: false
     },
     {
         id: 3,
         name: 'JavaScript',
         level: 'Intermediate',
-        info: 'Info JavaScript'
+        info: 'Info JavaScript',
+        isShowInfo: false
     },
     {
         id: 4,
         name: 'English',
         level: 'Intermediate',
-        info: ''
+        info: 'Info English',
+        isShowInfo: false
     }
 ];
 

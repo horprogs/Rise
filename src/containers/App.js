@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Header from '../components/header/Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LeftNavContainter from './navigation/navigation.jsx';

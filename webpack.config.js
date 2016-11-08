@@ -2,21 +2,29 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var env = process.env.NODE_ENV || 'development';
-var isProd = env === 'production';
+//var ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+//var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var env = process.env.NODE_ENV || 'production';
+var isProd = true;
 
 var plugins = [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
 
-
     new ExtractTextPlugin('style.css', {
         allChunks: true
-    })
+    }),
+
 ];
 
 if (isProd) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }));
+
     plugins.push(new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env),
     }))
@@ -26,8 +34,6 @@ if (isProd) {
 module.exports = {
     devtool: isProd ? 'source-map' : 'eval',
     entry: [
-        'webpack-hot-middleware/client',
-        'babel-polyfill',
         './src/index',
         './src/style.scss'
     ],
