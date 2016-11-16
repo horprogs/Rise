@@ -12,10 +12,3 @@ export function showInfoLevelRecommended(e) {
     }
 }
 
-export function addRecommendedItemToMe(e) {
-    let id = e.target.closest('.js-skill-item').dataset.id;
-    return {
-        type: 'ADD_RECOMMENDED_ITEM_TO_ME',
-        id
-    }
-}

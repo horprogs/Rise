@@ -45,3 +45,12 @@ export function closeTooltipLevel() {
     }
 }
 
+export function addRecommendedItemToMe(item, e) {
+    let id = e.target.closest('.js-skill-item').dataset.id;
+    return {
+        type: 'ADD_RECOMMENDED_ITEM_TO_ME',
+        id,
+        item
+    }
+}
+

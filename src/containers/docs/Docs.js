@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
 import Book from 'material-ui/svg-icons/action/book';
 import Divider from 'material-ui/Divider';
 
-class Docs extends Component {
+class Docs extends React.Component {
 
     render() {
         const docs = this.props.docs;

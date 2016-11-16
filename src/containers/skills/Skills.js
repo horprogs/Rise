@@ -4,11 +4,10 @@ import { bindActionCreators } from 'redux';
 import SkillList from '../../components/skills/skillList';
 import RecommendedSkillList from '../../components/skills/recommended/skillList';
 import AddItem from '../../components/skills/addItem';
-import {addSkill, deleteSkill, showTooltipLevel, closeTooltipLevel} from '../../actions/skills';
+import {addSkill, deleteSkill, showTooltipLevel, closeTooltipLevel, addRecommendedItemToMe} from '../../actions/skills';
 
 class Skills extends Component {
     render() {
-        console.log(this.props.recommendedSkills)
         return (
             <div>
                 <h1>Мои навыки</h1>
@@ -23,6 +22,7 @@ class Skills extends Component {
                 <h2>Рекомендуемые навыки</h2>
                 <RecommendedSkillList
                     skills={this.props.recommendedSkills}
+                    onAdd={this.props.addRecommendedItemToMe}
                 />
             </div>
         )
@@ -54,5 +54,6 @@ export default connect((state) =>
         addSkill,
         deleteSkill,
         showTooltipLevel,
-        closeTooltipLevel
+        closeTooltipLevel,
+        addRecommendedItemToMe,
     }, dispatch))(Skills)
