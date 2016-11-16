@@ -47,6 +47,7 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "scripts": {
+    "build": "webpack",
     "start": "webpack-dev-server --progress --inline --hot"
   },
   "repository": {

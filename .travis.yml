@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "node"
+script:
+- npm run build
+deploy:
+  on: React
+  provider: surge
+  project: ./
+  domain: horprogs.rise.surge.sh

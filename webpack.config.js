@@ -20,14 +20,15 @@ var plugins = [
 
 if (isProd) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
+        compress: {warnings: false},
+        comments: false,
+        minimize: true
     }));
 
     plugins.push(new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env),
-    }))
+    }));
+    plugins.push(new webpack.optimize.DedupePlugin());
 }
 
 
@@ -40,7 +41,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/static/',
+        publicPath: '/dist/',
         library: '[name]'
     },
     plugins,
