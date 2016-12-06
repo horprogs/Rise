@@ -1,7 +1,15 @@
+export const ADD_SKILL = 'ADD_SKILL';
+export const DELETE_SKILL = 'DELETE_SKILL';
+export const SHOW_TOOLTIP_LEVEL = 'SHOW_TOOLTIP_LEVEL';
+export const SHOW_INFO_LEVEL = 'SHOW_INFO_LEVEL';
+export const CHANGE_LEVEL = 'CHANGE_LEVEL';
+export const CLOSE_TOOLTIP_LEVEL = 'CLOSE_TOOLTIP_LEVEL';
+export const ADD_RECOMMENDED_ITEM_TO_ME = 'ADD_RECOMMENDED_ITEM_TO_ME';
+
 export function addSkill(data) {
     let name = data.value;
     return {
-        type: 'ADD_SKILL',
+        type: ADD_SKILL,
         name
     }
 }
@@ -9,7 +17,7 @@ export function addSkill(data) {
 export function deleteSkill(e) {
     let id = e.target.closest('.js-skill-item').dataset.id;
     return {
-        type: 'DELETE_SKILL',
+        type: DELETE_SKILL,
         id
     }
 }
@@ -17,7 +25,7 @@ export function deleteSkill(e) {
 export function showTooltipLevel(e) {
     let id = e.target.closest('.js-skill-item').dataset.id;
     return {
-        type: 'SHOW_TOOLTIP_LEVEL',
+        type: SHOW_TOOLTIP_LEVEL,
         id
     }
 }
@@ -25,7 +33,7 @@ export function showTooltipLevel(e) {
 export function showInfoLevel(e) {
     let id = e.target.closest('.js-skill-item').dataset.id;
     return {
-        type: 'SHOW_INFO_LEVEL',
+        type: SHOW_INFO_LEVEL,
         id
     }
 }
@@ -33,7 +41,7 @@ export function showInfoLevel(e) {
 export function changeLevel(level, e) {
     let id = e.target.closest('.js-skill-item').dataset.id;
     return {
-        type: 'CHANGE_LEVEL',
+        type: CHANGE_LEVEL,
         id,
         level
     }
@@ -41,14 +49,14 @@ export function changeLevel(level, e) {
 
 export function closeTooltipLevel() {
     return {
-        type: 'CLOSE_TOOLTIP_LEVEL',
+        type: CLOSE_TOOLTIP_LEVEL,
     }
 }
 
 export function addRecommendedItemToMe(item, e) {
     let id = e.target.closest('.js-skill-item').dataset.id;
     return {
-        type: 'ADD_RECOMMENDED_ITEM_TO_ME',
+        type: ADD_RECOMMENDED_ITEM_TO_ME,
         id,
         item
     }

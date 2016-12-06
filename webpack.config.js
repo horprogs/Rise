@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 //var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var env = process.env.NODE_ENV || 'production';
-var isProd = true;
+var isProd = false;
 
 var plugins = [
     new webpack.optimize.OccurenceOrderPlugin(),

@@ -5,7 +5,7 @@ const ModelRecommendedSkills = [
         level: 'Intermediate',
         info: 'Info English',
         isShowInfo: false,
-        progress: 20,
+        progress: 0,
         isShowTooltip: false
     },
     {
@@ -14,7 +14,7 @@ const ModelRecommendedSkills = [
         level: 'Novice',
         info: 'Google Analytics',
         isShowInfo: false,
-        progress: 20,
+        progress: 0,
         isShowTooltip: false
     }
 ];

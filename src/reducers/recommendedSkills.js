@@ -1,6 +1,8 @@
+import {SHOW_INFO_LEVEL_RECOMMENDED} from '../actions/recommendedSkills';
+
 const skills = (state = [], action) => {
     switch (action.type) {
-        case 'SHOW_INFO_LEVEL_RECOMMENDED':
+        case SHOW_INFO_LEVEL_RECOMMENDED:
             return state.map((el) => {
                 if (el.id === +action.id) {
                     el.isShowInfo = !el.isShowInfo;
